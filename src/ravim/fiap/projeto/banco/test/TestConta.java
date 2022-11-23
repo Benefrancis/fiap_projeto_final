@@ -16,7 +16,7 @@ public class TestConta {
 			Scanner scanner = new Scanner(System.in);//Scanner Object
 			
 			//Variables
-			String nomeCliente=null, cpf=null, correnteOuPoupança=null, outraConta="S";
+			String nomeCliente=null , cpf=null, correnteOuPoupança=null, outraConta="S";
 			double num = 12, agen =12; byte dig =5; float limit=1000, tax=0.005F; int idCliente=0;
 			
 			//Client info

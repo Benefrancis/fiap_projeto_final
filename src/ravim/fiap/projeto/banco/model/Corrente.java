@@ -75,7 +75,7 @@ public class Corrente extends Conta {
 	}
 	@Override
 	public String toString() {
-		return "Corrente [limite=" + limite + ", taxa=" + taxa + ", toString()=" + super.toString() + "]";
+		return "Corrente [limite=" + limite + ", taxa=" + taxa + ", toString()=" + super.toString() + "]" ;
 	}
 	
 }

@@ -4,5 +4,5 @@ public interface Padronavel {
 	
 	boolean depositar(float valor);
 	
-	boolean sacar(float valor);
+	boolean sacar(float valor) ;
 }

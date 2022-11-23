@@ -17,7 +17,7 @@ ContaDAO dao = new ContaDAO();
 			throw new Excecoes("CPF: Número de dígitos incorreto");
 		}
 		if(agencia <= 0) {
-			throw new Excecoes("Número da agencia tem que ser maior que zero");
+			throw new Excecoes("Número da agencia tem que ser maior que zero") ;
 		}
 	}
 }
