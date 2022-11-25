@@ -1,24 +1,31 @@
 package ravim.fiap.projeto.banco.model;
 
 public class Cliente {
-	private int id;
+	private long id;
 	private String nome;
 	private String cpf;
-	
-	public Cliente(){}
 
-	public Cliente(int id, String nome, String cpf) {
+	public Cliente() {
+	}
+
+	public Cliente(long id, String nome, String cpf) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 	}
 
-	public int getId() {
+	public Cliente(String nome, String cpf) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -40,7 +47,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + "]" ;
+		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + "]";
 	}
 }
-

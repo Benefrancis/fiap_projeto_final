@@ -1,15 +1,30 @@
 package ravim.fiap.projeto.banco.model;
 
-import ravim.fiap.projeto.banco.dao.ContaDAO;
+import ravim.fiap.projeto.banco.service.ContaService;
+import ravim.fiap.projeto.banco.test.Agencia;
+import ravim.fiap.projeto.banco.test.TipoConta;
 
 public class Poupanca extends Conta {
-	
-	private float rendimento;
-	
-	public Poupanca(){}
 
-	public Poupanca(short numero, byte digito, short agencia, float saldo, Cliente cliente, int id, float rendimento) {
-		super(numero, digito, agencia, saldo, cliente, id);
+	private float rendimento;
+
+	public Poupanca() {
+		super(TipoConta.POUPANCA);
+	}
+
+	
+	
+	
+	public Poupanca(Agencia agencia, int numero, byte digito, Cliente cliente) {
+		super(TipoConta.POUPANCA, agencia, numero, digito, cliente);
+	}
+
+	public Poupanca(long id, Agencia agencia, int numero, byte digito, Cliente cliente, double saldo) {
+		super(TipoConta.POUPANCA, id, agencia, numero, digito, cliente, saldo);
+	}
+
+	public Poupanca(short numero, byte digito, Agencia agencia, float saldo, Cliente cliente, int id, float rendimento) {
+		super(TipoConta.POUPANCA, id, agencia, numero, digito, cliente, saldo);
 		this.rendimento = rendimento;
 	}
 
@@ -20,38 +35,28 @@ public class Poupanca extends Conta {
 	public void setRendimento(float rendimento) {
 		this.rendimento = rendimento;
 	}
-	
-	public boolean creditarRendimento(float x) {
-		for(Conta b : ContaDAO.conta1) {
-			if(b instanceof Poupanca) {
-			b.setSaldo(b.getSaldo() * x + b.getSaldo());	
-			}
-		}
-		return true;
-	}
- 	
-	@Override
-	public boolean depositar(float valor) {
-		return true;
+
+	public boolean creditarRendimento(double valor) {
+		return ContaService.creditarRendimento(this, valor);
 	}
 
 	@Override
-	public boolean sacar(float valor) {
-		return true;
+	public boolean depositar(double valor) {
+		return ContaService.depositar(this, valor);
 	}
-	
-	public void consultarP(double x) { //Sem usar beans
-		for(Conta a : ContaDAO.conta1) {
-			if(a instanceof Poupanca) {
-				if(a.getNumero(x) == x) {
-					System.out.println(a.toString());
-				}
-			}			
-		}
+
+	@Override
+	public boolean sacar(double valor) {
+		return ContaService.sacar(this, valor);
+	}
+
+	public void consultar() {
+		toString();
 	}
 
 	@Override
 	public String toString() {
-		return "Poupanca [rendimento=" + rendimento + ", toString()=" + super.toString() + "]" ;
+		return getNumero() + "-" + getDigito();
 	}
+
 }

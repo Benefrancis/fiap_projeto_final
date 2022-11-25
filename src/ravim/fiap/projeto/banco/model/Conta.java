@@ -1,31 +1,87 @@
 package ravim.fiap.projeto.banco.model;
 
 import ravim.fiap.projeto.banco.interfaces.*;
-public abstract class Conta implements Padronavel{
-	private double numero;
-	private byte digito;
-	private double agencia;
-	private float saldo;
-	private Cliente cliente;
-	private int id;
-		
-	public Conta(){}
+import ravim.fiap.projeto.banco.test.Agencia;
+import ravim.fiap.projeto.banco.test.TipoConta;
 
-	public Conta(double numero, byte digito, double agencia, float saldo, Cliente cliente, int id) {
+public abstract class Conta implements Movimentavel {
+
+	private long id;
+
+	private Agencia agencia;
+
+	private int numero;
+
+	private byte digito;
+
+	private double saldo;
+
+	private TipoConta tipo;
+
+	private Cliente cliente;
+
+	public Conta(TipoConta tipo) {
+		this.tipo = tipo;
+	}
+
+	public TipoConta getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoConta tipo) {
+		this.tipo = tipo;
+	}
+
+	public Conta(TipoConta tipo, long id, Agencia agencia, int numero, byte digito, Cliente cliente, double saldo) {
 		super();
+		this.tipo = tipo;
+		this.id = id;
+		this.agencia = agencia;
 		this.numero = numero;
 		this.digito = digito;
-		this.agencia = agencia;
 		this.saldo = saldo;
 		this.cliente = cliente;
+
+	}
+
+	public Conta(TipoConta tipo, Agencia agencia, int numero, byte digito, Cliente cliente) {
+		this.tipo = tipo;
+		this.agencia = agencia;
+		this.numero = numero;
+		this.digito = digito;
+		this.cliente = cliente;
+	}
+
+	public Conta(TipoConta tipo, long id, Agencia agencia, int numero, byte digito, Cliente cliente) {
+		this.tipo = tipo;
+		this.id = id;
+		this.agencia = agencia;
+		this.numero = numero;
+		this.digito = digito;
+		this.cliente = cliente;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public double getNumero(double i) {
+	public Agencia getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
+
+	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(double numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
@@ -37,19 +93,11 @@ public abstract class Conta implements Padronavel{
 		this.digito = digito;
 	}
 
-	public double getAgencia() {
-		return agencia;
-	}
-
-	public void setAgencia(double agencia) {
-		this.agencia = agencia;
-	}
-
-	public float getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(float saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
@@ -61,19 +109,15 @@ public abstract class Conta implements Padronavel{
 		this.cliente = cliente;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Conta [numero=" + numero + ", digito=" + digito + ", agencia=" + agencia + ", saldo=" + saldo
-				+ ", cliente=" + cliente + ", id=" + id + "]" ;
+		StringBuilder builder = new StringBuilder();
+		builder.append("Conta [id=").append(id).append(", agencia=").append(agencia).append(", numero=").append(numero)
+				.append(", digito=").append(digito).append(", saldo=").append(saldo).append(", tipo=").append(tipo)
+				.append(", cliente=").append(cliente).append("]");
+		return builder.toString();
 	}
+
+ 
 
 }

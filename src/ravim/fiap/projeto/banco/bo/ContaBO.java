@@ -11,7 +11,7 @@ ContaDAO dao = new ContaDAO();
 	public void incluir(String nome, double agencia, Cliente cliente, String cpf) throws Excecoes {
 		
 		if(nome.length() <= 5) {
-			throw new Excecoes("Número de caracteres insuficiente");
+			throw new Excecoes("Número de caracteres insuficientes para o nome");
 		}
 		if(cpf.length() < 11 || cpf.length() > 11 ) {
 			throw new Excecoes("CPF: Número de dígitos incorreto");

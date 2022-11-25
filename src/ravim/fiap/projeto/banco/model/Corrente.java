@@ -1,81 +1,72 @@
 package ravim.fiap.projeto.banco.model;
 
-import ravim.fiap.projeto.banco.dao.ContaDAO;
+import ravim.fiap.projeto.banco.service.ContaService;
+import ravim.fiap.projeto.banco.test.Agencia;
+import ravim.fiap.projeto.banco.test.TipoConta;
 
 public class Corrente extends Conta {
-	private float limite;
-	private float taxa;
-	
-	public Corrente(){}
 
-	public Corrente(double numero, byte digito, short agencia, float saldo, Cliente cliente, int id, float limite, float taxa) {
-		super(numero, digito, agencia, saldo, cliente, id);
+	private double limite;
+
+	private double taxa;
+
+	public Corrente() {
+		super(TipoConta.CORRENTE);
+	}
+
+	public Corrente(Agencia agencia, int numero, byte digito, Cliente cliente) {
+		super(TipoConta.CORRENTE, agencia, numero, digito, cliente);
+	}
+
+	public Corrente(long id, Agencia agencia, int numero, byte digito, Cliente cliente, double saldo) {
+		super(TipoConta.CORRENTE,id, agencia, numero, digito, cliente, saldo);
+	}
+
+	public Corrente(long id, Agencia agencia, int numero, byte digito, double saldo, Cliente cliente, double limite,
+			double taxa) {
+		super(TipoConta.CORRENTE,id, agencia, numero, digito, cliente, saldo);
 		this.limite = limite;
 		this.taxa = taxa;
 	}
 
-	public float getLimite() {
+	public double getLimite() {
 		return limite;
 	}
 
-	public void setLimite(float limite) {
+	public void setLimite(double limite) {
 		this.limite = limite;
 	}
 
-	public float getTaxa() {
+	public double getTaxa() {
 		return taxa;
 	}
 
-	public void setTaxa(float taxa) {
+	public void setTaxa(double taxa) {
 		this.taxa = taxa;
 	}
-	
-	public float aumentarLimite(float valor) {
-		for(Conta b : ContaDAO.conta1) {
-			if(b instanceof Corrente) {
-				((Corrente) b).setLimite(((Corrente) b).getLimite() * valor);
-			}
-		}
-		return valor;
+
+	public boolean aumentarLimite(float valor) {
+		return ContaService.aumentarLimite(this, valor);
 	}
-	
+
 	public void debitarTaxa() {
-		for(Conta b : ContaDAO.conta1) {
-			if(b instanceof Corrente) {
-				b.setSaldo(b.getSaldo() - (b.getSaldo() * taxa));
-			}
-		}	
+		ContaService.debitarTaxa(this, taxa);
 	}
+
 	@Override
-	public boolean depositar(float valor) {		
-		for(Conta b : ContaDAO.conta1) {
-			if(b instanceof Corrente) {
-				b.setSaldo(b.getSaldo() + valor);
-			}
-		}
-		return true;
-	}	
+	public boolean depositar(double valor) {
+		return ContaService.depositar(this, valor);
+
+	}
+
 	@Override
-	public boolean sacar(float valor) { 
-		for(Conta b : ContaDAO.conta1) {
-			if(b instanceof Corrente) {
-				b.setSaldo(b.getSaldo() - valor);
-			}
-		}
-		return true;
+	public boolean sacar(double valor) {
+		return ContaService.sacar(this, valor);
 	}
-	public void consultar(double x) { //Sem usar beans
-		for(Conta a : ContaDAO.conta1) {
-			if(a instanceof Corrente) {
-				if(a.getNumero(x) == x) {
-					System.out.println(a.toString());
-				}
-			}			
-		}
-	}
+
 	@Override
 	public String toString() {
-		return "Corrente [limite=" + limite + ", taxa=" + taxa + ", toString()=" + super.toString() + "]" ;
+		return getNumero() + "-" + getDigito();
 	}
-	
+
 }
