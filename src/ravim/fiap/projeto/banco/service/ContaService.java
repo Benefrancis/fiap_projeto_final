@@ -5,12 +5,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import ravim.fiap.projeto.banco.dao.ContaDAO;
+import ravim.fiap.projeto.banco.model.Agencia;
 import ravim.fiap.projeto.banco.model.Cliente;
 import ravim.fiap.projeto.banco.model.Conta;
 import ravim.fiap.projeto.banco.model.Corrente;
 import ravim.fiap.projeto.banco.model.Poupanca;
-import ravim.fiap.projeto.banco.test.Agencia;
-import ravim.fiap.projeto.banco.test.TipoConta;
+import ravim.fiap.projeto.banco.model.TipoConta;
 
 public class ContaService {
 

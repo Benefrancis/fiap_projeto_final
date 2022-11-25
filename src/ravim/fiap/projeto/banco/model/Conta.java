@@ -1,8 +1,6 @@
 package ravim.fiap.projeto.banco.model;
 
 import ravim.fiap.projeto.banco.interfaces.*;
-import ravim.fiap.projeto.banco.test.Agencia;
-import ravim.fiap.projeto.banco.test.TipoConta;
 
 public abstract class Conta implements Movimentavel {
 

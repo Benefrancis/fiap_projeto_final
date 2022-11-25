@@ -3,10 +3,10 @@ package ravim.fiap.projeto.banco.dao;
 import java.util.List;
 import java.util.Vector;
 
+import ravim.fiap.projeto.banco.model.Agencia;
 import ravim.fiap.projeto.banco.model.Cliente;
 import ravim.fiap.projeto.banco.model.Conta;
-import ravim.fiap.projeto.banco.test.Agencia;
-import ravim.fiap.projeto.banco.test.TipoConta;
+import ravim.fiap.projeto.banco.model.TipoConta;
 
 public class ContaDAO {
 

@@ -1,4 +1,4 @@
-package ravim.fiap.projeto.banco.test;
+package ravim.fiap.projeto.banco.model;
 
 public enum Opcao {
 

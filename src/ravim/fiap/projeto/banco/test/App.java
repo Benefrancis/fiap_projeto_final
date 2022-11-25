@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import ravim.fiap.projeto.banco.model.Agencia;
 import ravim.fiap.projeto.banco.model.Cliente;
 import ravim.fiap.projeto.banco.model.Conta;
+import ravim.fiap.projeto.banco.model.Opcao;
+import ravim.fiap.projeto.banco.model.TipoConta;
 import ravim.fiap.projeto.banco.service.ClienteService;
 import ravim.fiap.projeto.banco.service.ContaService;
 
